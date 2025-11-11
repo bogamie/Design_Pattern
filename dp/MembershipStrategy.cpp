@@ -1,4 +1,4 @@
-#include "MembershipStrategy.h"
+﻿#include "MembershipStrategy.h"
 
 double NormalMember::getDiscountRate() const { return 0.0; }
 string NormalMember::getGradeName() const { return "Normal"; }

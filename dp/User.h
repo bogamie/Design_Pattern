@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include "MembershipStrategy.h"
 using namespace std;

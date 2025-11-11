@@ -1,4 +1,4 @@
-#include "FeeStrategy.h"
+﻿#include "FeeStrategy.h"
 
 double StandardFee::calculateFee(int days) const { return days * 1000; }
 double PremiumFee::calculateFee(int days) const { return days * 800; }

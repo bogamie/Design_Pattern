@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Singleton">
       <UniqueIdentifier>{16bfee32-461f-4d8d-96e9-2f31f3c5b45c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Factory">
+      <UniqueIdentifier>{9b86fc42-c0bc-4001-ab37-ce8d9b3cee90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factory">
+      <UniqueIdentifier>{25dcd6c2-4730-4f07-b95b-2e65d37cce96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,6 +81,9 @@
     <ClCompile Include="RentalManager.cpp">
       <Filter>Source Files\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="AbstractMembershipFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
@@ -103,6 +112,18 @@
     </ClInclude>
     <ClInclude Include="RentalManager.h">
       <Filter>Header Files\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractMembershipFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="PremiumFactory.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="RestrictedFactory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

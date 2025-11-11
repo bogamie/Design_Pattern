@@ -1,15 +1,15 @@
-﻿#pragma once
+#pragma once
 #include <string>
-#include "MembershipStrategy.h"
+#include "AbstractMembershipFactory.h"
 using namespace std;
 
 class User {
     string id, pw, name;
-    MembershipStrategy* membership;
+    const AbstractMembershipFactory* membership;
 public:
-    User(string id, string pw, string name, MembershipStrategy* m);
+    User(string id, string pw, string name, AbstractMembershipFactory* m);
     ~User();
     string getName() const;
     double getDiscountRate() const;
-    string getGrade() const;
+    const FeeStrategy* getFeeStrategy() const {};
 };

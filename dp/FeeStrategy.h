@@ -1,22 +1,20 @@
-﻿#pragma once
+#pragma once
 
+// 책 요금 계산용 전략 (Strategy Pattern)
 class FeeStrategy {
 public:
     virtual ~FeeStrategy() = default;
-    virtual double calculateFee(int days) const = 0;
+    virtual double calculateFee(int days, double discountRate) const = 0;
 };
 
-class StandardFee : public FeeStrategy {
+// 기본 요금 (할인 적용)
+class BasicFee : public FeeStrategy {
 public:
-    double calculateFee(int days) const override;
+    double calculateFee(int days, double discountRate) const override;
 };
 
-class PremiumFee : public FeeStrategy {
-public:
-    double calculateFee(int days) const override;
-};
-
+// 연체 요금 (할인 미적용)
 class LateFee : public FeeStrategy {
 public:
-    double calculateFee(int days) const override;
+    double calculateFee(int days, double discountRate) const override;
 };

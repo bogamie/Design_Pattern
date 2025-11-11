@@ -4,9 +4,11 @@
 #include "RentalManager.h"
 #include "DiscountDecorator.h"
 #include "Observer.h"
-#include "MembershipStrategy.h"
+#include "NormalFactory.h"
+#include "PremiumFactory.h"
 #include "BookInventory.h"
 #include "WaitingListManager.h"
+
 using namespace std;
 
 int main() {
@@ -20,9 +22,9 @@ int main() {
     notifier.attach(&email);
     notifier.attach(&sms);
 
-    User user1("aaa", "1234", "홍길동", new PremiumMember());
-    User user2("bbb", "5678", "김철수", new NormalMember());
-    User user3("ccc", "9012", "이영희", new NormalMember());
+    User user1("aaa", "1234", "홍길동", new PremiumFactory());
+    User user2("bbb", "5678", "김철수", new NormalFactory());
+    User user3("ccc", "9012", "이영희", new NormalFactory());
 
     Book book1(1, "원피스", "오다");
     Book book2(2, "나루토", "키시모토");

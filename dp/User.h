@@ -11,5 +11,5 @@ public:
     ~User();
     string getName() const;
     double getDiscountRate() const;
-    const FeeStrategy* getFeeStrategy() const {};
+    const FeeStrategy* getFeeStrategy() const;
 };

@@ -37,15 +37,18 @@
     <Filter Include="Header Files\Strategy">
       <UniqueIdentifier>{cfeeb541-3c16-4019-8bf1-1c296463233c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Singleton">
+      <UniqueIdentifier>{e0b8f434-03ba-4021-9b41-94505054432c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Singleton">
+      <UniqueIdentifier>{16bfee32-461f-4d8d-96e9-2f31f3c5b45c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Book.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="RentalManager.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
@@ -63,12 +66,18 @@
     <ClCompile Include="MembershipStrategy.cpp">
       <Filter>Source Files\Strategy</Filter>
     </ClCompile>
+    <ClCompile Include="BookInventory.cpp">
+      <Filter>Source Files\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitingListManager.cpp">
+      <Filter>Source Files\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="RentalManager.cpp">
+      <Filter>Source Files\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="RentalManager.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
@@ -85,6 +94,15 @@
     </ClInclude>
     <ClInclude Include="MembershipStrategy.h">
       <Filter>Header Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="BookInventory.h">
+      <Filter>Header Files\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitingListManager.h">
+      <Filter>Header Files\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="RentalManager.h">
+      <Filter>Header Files\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

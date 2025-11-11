@@ -1,10 +1,24 @@
-﻿#include "Book.h"
+#include "Book.h"
+using namespace std;
 
-Book::Book(int i, string t, string a) 
-	: id(i), title(t), author(a), isRented(false) {
+Book::Book(int i, string t, string a) : id(i), title(t), author(a), isRented(false) {}
+
+void Book::rent() {
+    isRented = true;
 }
-void Book::rent() { isRented = true; }
-void Book::giveBack() { isRented = false; }
-bool Book::rented() const { return isRented; }
-string Book::getTitle() const { return title; }
 
+void Book::giveBack() {
+    isRented = false;
+}
+
+bool Book::rented() const {
+    return isRented;
+}
+
+string Book::getTitle() const {
+    return title;
+}
+
+int Book::getId() const {
+    return id;
+}

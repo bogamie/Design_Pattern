@@ -1,4 +1,4 @@
-#include "DiscountDecorator.h"
+﻿#include "DiscountDecorator.h"
 
 double BasicDiscount::applyDiscount(double baseFee) { return baseFee; }
 DiscountDecorator::DiscountDecorator(Discount* d) : discount(d) {}

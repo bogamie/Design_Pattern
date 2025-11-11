@@ -13,4 +13,5 @@ public:
     void giveBack();
     bool rented() const;
     string getTitle() const;
+    int getId() const;
 };

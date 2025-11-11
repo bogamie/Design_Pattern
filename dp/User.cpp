@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "User.h"
 
 User::User(string id, string pw, string name, MembershipStrategy* m)

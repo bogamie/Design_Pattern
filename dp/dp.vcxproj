@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
+    <ClCompile Include="BookInventory.cpp" />
     <ClCompile Include="DiscountDecorator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="FreeStrategy.cpp" />
@@ -131,15 +132,18 @@
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="RentalManager.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="WaitingListManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
+    <ClInclude Include="BookInventory.h" />
     <ClInclude Include="DiscountDecorator.h" />
     <ClInclude Include="FeeStrategy.h" />
     <ClInclude Include="MembershipStrategy.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="RentalManager.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="WaitingListManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

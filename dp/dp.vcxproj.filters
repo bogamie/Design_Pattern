@@ -66,7 +66,7 @@
     <ClCompile Include="Observer.cpp">
       <Filter>Source Files\Observer</Filter>
     </ClCompile>
-    <ClCompile Include="FreeStrategy.cpp">
+    <ClCompile Include="FeeStrategy.cpp">
       <Filter>Source Files\Strategy</Filter>
     </ClCompile>
     <ClCompile Include="MembershipStrategy.cpp">

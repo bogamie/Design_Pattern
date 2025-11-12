@@ -128,7 +128,7 @@
     <ClCompile Include="BookInventory.cpp" />
     <ClCompile Include="DiscountDecorator.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="FreeStrategy.cpp" />
+    <ClCompile Include="FeeStrategy.cpp" />
     <ClCompile Include="MembershipStrategy.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="RentalManager.cpp" />

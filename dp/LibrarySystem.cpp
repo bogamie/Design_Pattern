@@ -10,13 +10,13 @@ LibrarySystem::LibrarySystem()
 
 void LibrarySystem::seed() {
     // seed books
-    addBook(1, "원피스", "오다", 2);
-    addBook(2, "나루토", "키시모토", 0);
+    addBook(1, "onepiece", "oda", 2);
+    addBook(2, "naruto", "kishimoto", 0);
 
     // seed users
-    addUser("aaa", "1234", "홍길동", new PremiumMember());
-    addUser("bbb", "5678", "김철수", new NormalMember());
-    addUser("ccc", "9012", "이영희", new NormalMember());
+    addUser("aaa", "1234", "junpyo", new PremiumMember());
+    addUser("bbb", "5678", "eonho", new NormalMember());
+    addUser("ccc", "9012", "hihi", new NormalMember());
 }
 
 bool LibrarySystem::addBook(int id, const std::string& title, const std::string& author, int quantity) {

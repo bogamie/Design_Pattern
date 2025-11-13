@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{25dcd6c2-4730-4f07-b95b-2e65d37cce96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Library">
+      <UniqueIdentifier>{5a53e3da-0eab-42f2-a28d-3f19fb4979c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Library">
+      <UniqueIdentifier>{9249cfed-03d5-4b7a-aa9b-72dd81d621fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -66,7 +72,7 @@
     <ClCompile Include="Observer.cpp">
       <Filter>Source Files\Observer</Filter>
     </ClCompile>
-    <ClCompile Include="FreeStrategy.cpp">
+    <ClCompile Include="FeeStrategy.cpp">
       <Filter>Source Files\Strategy</Filter>
     </ClCompile>
     <ClCompile Include="MembershipStrategy.cpp">
@@ -83,6 +89,12 @@
     </ClCompile>
     <ClCompile Include="AbstractMembershipFactory.cpp">
       <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="LibrarySystem.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="CLI.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="RestrictedFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="LibrarySystem.h">
+      <Filter>Header Files\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="CLI.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

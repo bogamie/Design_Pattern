@@ -124,9 +124,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractMembershipFactory.cpp" />
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Book.cpp" />
+    <ClCompile Include="BookDB.cpp" />
     <ClCompile Include="BookInventory.cpp" />
     <ClCompile Include="CLI.cpp" />
+    <ClCompile Include="sqlite3.c" />
+    <ClCompile Include="UserDB.cpp" />
     <ClCompile Include="DiscountDecorator.cpp" />
     <ClCompile Include="LibrarySystem.cpp" />
     <ClCompile Include="main.cpp" />
@@ -139,9 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractMembershipFactory.h" />
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookInventory.h" />
     <ClInclude Include="CLI.h" />
+    <ClInclude Include="Database.h" />
     <ClInclude Include="DiscountDecorator.h" />
     <ClInclude Include="FeeStrategy.h" />
     <ClInclude Include="LibrarySystem.h" />
@@ -151,6 +157,8 @@
     <ClInclude Include="PremiumFactory.h" />
     <ClInclude Include="RentalManager.h" />
     <ClInclude Include="RestrictedFactory.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3ext.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="WaitingListManager.h" />
   </ItemGroup>

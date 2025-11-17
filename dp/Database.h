@@ -4,11 +4,10 @@
 #include <iostream>
 
 class Database {
-private:
+public:
     sqlite3* db;
     Database() : db(nullptr) {}
 
-public:
     static Database& get() {
         static Database instance;
         return instance;
@@ -35,7 +34,6 @@ public:
         return true;
     }
 
-    // 단일 문자열 조회
     std::string queryString(const std::string& q) {
         sqlite3_stmt* stmt;
         std::string val = "";
@@ -50,7 +48,6 @@ public:
         return val;
     }
 
-    // 단일 정수 조회
     int queryInt(const std::string& q) {
         sqlite3_stmt* stmt;
         int v = -1;

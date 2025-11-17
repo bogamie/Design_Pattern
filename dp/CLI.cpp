@@ -2,33 +2,34 @@
 #include <iostream>
 #include <limits>
 
-using std::cin;
-using std::cout;
-using std::endl;
+using namespace std;
 
 CLI::CLI(LibrarySystem& system) : sys_(system) {}
 
-int CLI::promptInt(const std::string& label) {
+int CLI::promptInt(const string& label) {
     while (true) {
         cout << label;
         int v;
-        if (cin >> v) return v;
+        if (cin >> v) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return v;
+        }
         cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "잘못된 입력입니다. 다시 입력해주세요." << endl;
     }
 }
 
-std::string CLI::promptStr(const std::string& label) {
+string CLI::promptStr(const string& label) {
     cout << label;
-    std::string s;
-    cin >> s;
+    string s;
+    getline(cin, s);
     return s;
 }
 
 void CLI::pause() {
     cout << "계속하려면 엔터를 누르세요..." << endl;
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cin.get();
 }
 
@@ -53,18 +54,18 @@ void CLI::roleMenu() {
 void CLI::userMenu() {
     // login or register
     cout << "\n-- 사용자 로그인/회원가입 --" << endl;
-    std::string id = promptStr("아이디: ");
-    std::string pw = promptStr("비밀번호: ");
+    string id = promptStr("아이디: ");
+    string pw = promptStr("비밀번호: ");
 
     currentUser_ = sys_.authenticate(id, pw);
     if (!currentUser_) {
         cout << "존재하지 않는 사용자입니다. 새로 가입하시겠습니까? (y/n): ";
         char yn; cin >> yn;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (yn == 'y' || yn == 'Y') {
-            std::string name = promptStr("이름: ");
-            sys_.addUser(id, pw, name, new NormalMember());
+            sys_.addUser(id, pw, id, new NormalMember());
             currentUser_ = sys_.authenticate(id, pw);
-            cout << name << "님, 가입 완료되었습니다." << endl;
+            cout << id << "님, 가입 완료되었습니다." << endl;
         } else {
             return;
         }
@@ -92,7 +93,7 @@ void CLI::userMenu() {
 void CLI::adminMenu() {
     // simple admin password
     cout << "\n-- 관리자 로그인 --" << endl;
-    std::string pw = promptStr("관리자 비밀번호(admin): ");
+    string pw = promptStr("관리자 비밀번호(admin): ");
     if (pw != "admin") { cout << "인증 실패" << endl; return; }
 
     while (true) {
@@ -131,7 +132,26 @@ void CLI::userRent() {
     int id = promptInt("대여할 도서 ID: ");
     Book* book = sys_.getBook(id);
     if (!book) { cout << "도서를 찾을 수 없습니다." << endl; return; }
-    sys_.rental().rentBook(currentUser_, book);
+    
+    int days = promptInt("대여일 수: ");
+    if (days <= 0) { cout << "대여일은 1일 이상이어야 합니다." << endl; return; }
+    
+    double fee = currentUser_->calculateRentalFee(days);
+    cout << "\n=== 대여 정보 ===" << endl;
+    cout << "도서: " << book->getTitle() << endl;
+    cout << "대여일: " << days << "일" << endl;
+    cout << "대여비: " << fee << "원" << endl;
+    cout << "================\n" << endl;
+    
+    cout << "대여하시겠습니까? (y/n): ";
+    char yn; cin >> yn;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    if (yn == 'y' || yn == 'Y') {
+        sys_.rental().rentBook(currentUser_, book);
+    } else {
+        cout << "대여가 취소되었습니다." << endl;
+    }
 }
 
 void CLI::userReserve() {
@@ -152,8 +172,8 @@ void CLI::adminListBooks() { userBrowse(); }
 
 void CLI::adminAddBook() {
     int id = promptInt("도서 ID: ");
-    std::string title = promptStr("제목: ");
-    std::string author = promptStr("저자: ");
+    string title = promptStr("제목: ");
+    string author = promptStr("저자: ");
     int qty = promptInt("초기 재고: ");
     if (sys_.addBook(id, title, author, qty)) cout << "추가되었습니다." << endl;
     else cout << "이미 존재하는 ID입니다." << endl;
@@ -182,7 +202,7 @@ void CLI::adminListUsers() {
 }
 
 void CLI::adminChangeMembership() {
-    std::string id = promptStr("변경할 사용자 ID: ");
+    string id = promptStr("변경할 사용자 ID: ");
     cout << "등급 선택: 1) Normal  2) Premium  3) Restricted" << endl;
     int sel = promptInt("선택: ");
     MembershipStrategy* m = nullptr;

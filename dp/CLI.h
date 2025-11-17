@@ -2,6 +2,8 @@
 #include <string>
 #include "LibrarySystem.h"
 
+using namespace std;
+
 class CLI {
 public:
     explicit CLI(LibrarySystem& system);
@@ -11,8 +13,8 @@ private:
     LibrarySystem& sys_;
 
     // main
-    int promptInt(const std::string& label);
-    std::string promptStr(const std::string& label);
+    int promptInt(const string& label);
+    string promptStr(const string& label);
     void pause();
 
     void roleMenu();

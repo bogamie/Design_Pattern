@@ -84,6 +84,9 @@
     <ClCompile Include="AbstractMembershipFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="UserManager.cpp">
+      <Filter>Source Files\Singleton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
@@ -91,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="User.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="DiscountDecorator.h">
-      <Filter>Header Files\Decorator</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Header Files\Observer</Filter>
@@ -124,6 +124,21 @@
     </ClInclude>
     <ClInclude Include="RestrictedFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscountDecorator.h">
+      <Filter>Header Files\Decorator</Filter>
+    </ClInclude>
+    <ClInclude Include="UserManager.h">
+      <Filter>Header Files\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMember.h">
+      <Filter>Header Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="PremiumMember.h">
+      <Filter>Header Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="RestrictedMember.h">
+      <Filter>Header Files\Strategy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,9 +1,15 @@
 #pragma once
 #include "AbstractMembershipFactory.h"
+#include "NormalMember.h"
 
 class NormalFactory : public AbstractMembershipFactory {
 public:
-    double getMonthlyFee() const override { return 10000.0; }
-    double getDiscountRate() const override { return 0.03; }
+    MembershipStrategy* create() const override {
+        return new NormalMember();
+    }
+
+    string getGradeName() const override { return "Normal"; }
+    double getMonthlyFee() const override { return 0.0; }
+    double getDiscountRate() const override { return 0.0; }
     const FeeStrategy* getFeeStrategy() const override { return &BASIC_FEE; }
 };

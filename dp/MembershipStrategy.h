@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <string>
 using namespace std;
 
@@ -9,20 +9,3 @@ public:
     virtual string getGradeName() const = 0;
 };
 
-class NormalMember : public MembershipStrategy {
-public:
-    double getDiscountRate() const override;
-    string getGradeName() const override;
-};
-
-class PremiumMember : public MembershipStrategy {
-public:
-    double getDiscountRate() const override;
-    string getGradeName() const override;
-};
-
-class RestrictedMember : public MembershipStrategy {
-public:
-    double getDiscountRate() const override;
-    string getGradeName() const override;
-};

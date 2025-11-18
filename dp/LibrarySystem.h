@@ -28,7 +28,7 @@ public:
     int getStock(int id) const;
 
     // User management
-    bool addUser(const std::string& id, const std::string& pw, const std::string& name, MembershipStrategy* m);
+    bool addUser(const std::string& id, const std::string& pw, const std::string& name, AbstractMembershipFactory* m);
     User* getUser(const std::string& id);
     std::vector<User*> listUsers();
 
@@ -36,7 +36,7 @@ public:
     User* authenticate(const std::string& id, const std::string& pw);
 
     // Membership
-    bool setUserMembership(const std::string& id, MembershipStrategy* m);
+    bool setUserMembership(const std::string& id, AbstractMembershipFactory* m);
 
     // Rental interfaces
     RentalManager& rental();

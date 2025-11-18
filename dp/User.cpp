@@ -1,16 +1,36 @@
 #include "User.h"
 
-User::User(string id, string pw, string name, MembershipStrategy * m)
+User::User(const std::string& id,
+    const std::string& pw,
+    const std::string& name,
+    const AbstractMembershipFactory* m)
     : id(id), pw(pw), name(name), membership(m) {
 }
-User::~User() { delete membership; }
-string User::getId() const { return id; }
-bool User::checkPassword(const string& input) const { return pw == input; }
-string User::getName() const { return name; }
-double User::getDiscountRate() const { return membership->getDiscountRate(); }
-string User::getGrade() const { return membership->getGradeName(); }
-void User::setMembership(MembershipStrategy* m) {
-    if (membership == m) return;
-    delete membership;
+
+const std::string& User::getId() const { return id; }
+const std::string& User::getName() const { return name; }
+const std::string& User::getPassword() const { return pw; }
+
+bool User::checkPassword(const std::string& p) const {
+    return pw == p;
+}
+
+std::string User::getGrade() const {
+    return membership->getGradeName();
+}
+
+double User::getDiscountRate() const {
+    return membership->getDiscountRate();
+}
+
+const FeeStrategy* User::getFeeStrategy() const {
+    return membership->getFeeStrategy();
+}
+
+double User::getMonthlyFee() const {
+    return membership->getMonthlyFee();
+}
+
+void User::setMembership(const AbstractMembershipFactory* m) {
     membership = m;
 }

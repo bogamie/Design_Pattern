@@ -1,7 +1,7 @@
 #include "Admin.h"
 
 bool Admin::createUser(const std::string& id, const std::string& pw,
-    const std::string& name, MembershipStrategy* m) {
+    const std::string& name, AbstractMembershipFactory* m) {
     return UserDB::get().addUser(id, pw, name, m);
 }
 
@@ -9,7 +9,7 @@ bool Admin::deleteUser(const std::string& id) {
     return UserDB::get().removeUser(id);
 }
 
-bool Admin::changeMembership(const std::string& id, MembershipStrategy* m) {
+bool Admin::changeMembership(const std::string& id, AbstractMembershipFactory* m) {
     return UserDB::get().updateMembership(id, m);
 }
 

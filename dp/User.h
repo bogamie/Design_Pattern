@@ -1,22 +1,31 @@
-﻿#pragma once
+#pragma once
 #include <string>
-#include "MembershipStrategy.h"
-using namespace std;
+#include "AbstractMembershipFactory.h"
 
 class User {
-    string id, pw, name;
-    MembershipStrategy* membership;
+private:
+    std::string id;
+    std::string pw;
+    std::string name;
+
+    const AbstractMembershipFactory* membership;
+
 public:
-    User(string id, string pw, string name, MembershipStrategy* m);
-    ~User();
-    // identity
-    string getId() const;
-    bool checkPassword(const string& input) const;
+    User(const std::string& id,
+        const std::string& pw,
+        const std::string& name,
+        const AbstractMembershipFactory* m);
 
-    string getName() const;
+    const std::string& getId() const;
+    const std::string& getName() const;
+    const std::string& getPassword() const;
+
+    bool checkPassword(const std::string& pw) const;
+
+    std::string getGrade() const;
     double getDiscountRate() const;
-    string getGrade() const;
+    const FeeStrategy* getFeeStrategy() const;
+    double getMonthlyFee() const;
 
-    // membership management
-    void setMembership(MembershipStrategy* m);
+    void setMembership(const AbstractMembershipFactory* m);
 };

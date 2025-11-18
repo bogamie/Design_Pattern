@@ -1,4 +1,6 @@
 #include "UserDB.h"
+#include "FactoryRegistry.h"
+#include "AbstractMembershipFactory.h"
 
 bool UserDB::initTable() {
     return Database::get().exec(
@@ -11,7 +13,7 @@ bool UserDB::initTable() {
 }
 
 bool UserDB::addUser(const std::string& id, const std::string& pw,
-    const std::string& name, MembershipStrategy* m) {
+    const std::string& name, AbstractMembershipFactory* m) {
 
     std::string sql =
         "INSERT INTO users VALUES ('" + id + "','" +
@@ -44,10 +46,10 @@ User* UserDB::loadUser(const std::string& id) {
 
     if (name == "") return nullptr;
 
-    MembershipStrategy* m = nullptr;
-    if (grade == "Normal") m = new NormalMember();
-    else if (grade == "Premium") m = new PremiumMember();
-    else m = new RestrictedMember();
+    AbstractMembershipFactory* m = nullptr;
+    if (grade == "Normal") m = &NORMAL_FACTORY;
+    else if (grade == "Premium") m = &PREMIUM_FACTORY;
+    else m = &RESTRICTED_FACTORY;
 
     return new User(id, "?", name, m);
 }
@@ -66,10 +68,10 @@ std::vector<User*> UserDB::loadAllUsers() {
         std::string name = (const char*)sqlite3_column_text(stmt, 1);
         std::string grade = (const char*)sqlite3_column_text(stmt, 2);
 
-        MembershipStrategy* m = nullptr;
-        if (grade == "Normal") m = new NormalMember();
-        else if (grade == "Premium") m = new PremiumMember();
-        else m = new RestrictedMember();
+        AbstractMembershipFactory* m = nullptr;
+        if (grade == "Normal") m = &NORMAL_FACTORY;
+        else if (grade == "Premium") m = &PREMIUM_FACTORY;
+        else m = &RESTRICTED_FACTORY;
 
         v.push_back(new User(id, "?", name, m));
     }
@@ -78,7 +80,7 @@ std::vector<User*> UserDB::loadAllUsers() {
     return v;
 }
 
-bool UserDB::updateMembership(const std::string& id, MembershipStrategy* m) {
+bool UserDB::updateMembership(const std::string& id, AbstractMembershipFactory* m) {
     std::string sql =
         "UPDATE users SET grade='" + m->getGradeName() +
         "' WHERE id='" + id + "';";

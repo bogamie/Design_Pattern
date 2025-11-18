@@ -1,6 +1,7 @@
 #include "CLI.h"
 #include <iostream>
 #include <limits>
+#include "FactoryRegistry.h"
 
 using std::cin;
 using std::cout;
@@ -59,11 +60,14 @@ void CLI::userMenu() {
     if (!currentUser_) {
         cout << "User not found. Create a new account? (y/n): ";
         char yn; cin >> yn;
+
         if (yn == 'y' || yn == 'Y') {
-            std::string name = promptStr("Name: ");
-            sys_.addUser(id, pw, name, new NormalMember());
+            string name = promptStr("Name: ");
+
+            sys_.addUser(id, pw, name, &NORMAL_FACTORY);
+
             currentUser_ = sys_.authenticate(id, pw);
-            cout << "Account created successfully." << endl;
+            cout << "Account created successfully.\n";
         }
         else {
             return;
@@ -206,20 +210,31 @@ void CLI::adminListUsers() {
 }
 
 void CLI::adminChangeMembership() {
-    std::string id = promptStr("User ID to modify: ");
-    cout << "Membership: 1) Normal  2) Premium  3) Restricted" << endl;
+    string id = promptStr("User ID to modify: ");
+    cout << "Membership: 1) Normal  2) Premium  3) Restricted\n";
+
     int sel = promptInt("Select: ");
 
-    MembershipStrategy* m = nullptr;
+    AbstractMembershipFactory* m = nullptr;
+
     switch (sel) {
-    case 1: m = new NormalMember(); break;
-    case 2: m = new PremiumMember(); break;
-    case 3: m = new RestrictedMember(); break;
-    default: cout << "Invalid option." << endl; return;
+    case 1:
+        m = &NORMAL_FACTORY;
+        break;
+    case 2:
+        m = &PREMIUM_FACTORY;
+        break;
+    case 3:
+        m = &RESTRICTED_FACTORY;
+        break;
+
+    default:
+        cout << "Invalid option.\n";
+        return;
     }
 
     if (sys_.setUserMembership(id, m))
-        cout << "Membership updated." << endl;
+        cout << "Membership updated.\n";
     else
-        cout << "User not found." << endl;
+        cout << "User not found.\n";
 }

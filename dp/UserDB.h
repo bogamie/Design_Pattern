@@ -3,7 +3,7 @@
 #include <vector>
 #include "Database.h"
 #include "User.h"
-#include "MembershipStrategy.h"
+#include "AbstractMembershipFactory.h"
 
 class UserDB {
 private:
@@ -18,7 +18,7 @@ public:
     bool initTable();
 
     bool addUser(const std::string& id, const std::string& pw,
-        const std::string& name, MembershipStrategy* m);
+        const std::string& name, AbstractMembershipFactory* m);
 
     bool removeUser(const std::string& id);
 
@@ -26,7 +26,7 @@ public:
 
     std::vector<User*> loadAllUsers();
 
-    bool updateMembership(const std::string& id, MembershipStrategy* m);
+    bool updateMembership(const std::string& id, AbstractMembershipFactory* m);
 
     bool verifyPassword(const std::string& id, const std::string& pw);
 };

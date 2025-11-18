@@ -1,4 +1,5 @@
 #include "LibrarySystem.h"
+#include "FactoryRegistry.h"
 #include <algorithm>
 
 LibrarySystem::LibrarySystem()
@@ -14,9 +15,9 @@ void LibrarySystem::seed() {
     addBook(2, "naruto", "kishimoto", 0);
 
     // seed users
-    addUser("aaa", "1234", "junpyo", new PremiumMember());
-    addUser("bbb", "5678", "eonho", new NormalMember());
-    addUser("ccc", "9012", "hihi", new NormalMember());
+    addUser("aaa", "1234", "junpyo", &PREMIUM_FACTORY);
+    addUser("bbb", "5678", "eonho", &NORMAL_FACTORY);
+    addUser("ccc", "9012", "hihi", &NORMAL_FACTORY);
 }
 
 bool LibrarySystem::addBook(int id, const std::string& title, const std::string& author, int quantity) {
@@ -67,7 +68,7 @@ int LibrarySystem::getStock(int id) const {
     return const_cast<BookInventory&>(inventory_).getStock(id);
 }
 
-bool LibrarySystem::addUser(const std::string& id, const std::string& pw, const std::string& name, MembershipStrategy* m) {
+bool LibrarySystem::addUser(const std::string& id, const std::string& pw, const std::string& name, AbstractMembershipFactory* m) {
     if (users_.count(id)) return false;
     users_[id] = std::unique_ptr<User>(new User(id, pw, name, m));
     return true;
@@ -92,7 +93,7 @@ User* LibrarySystem::authenticate(const std::string& id, const std::string& pw) 
     return u->checkPassword(pw) ? u : nullptr;
 }
 
-bool LibrarySystem::setUserMembership(const std::string& id, MembershipStrategy* m) {
+bool LibrarySystem::setUserMembership(const std::string& id, AbstractMembershipFactory* m) {
     User* u = getUser(id);
     if (!u) { delete m; return false; }
     u->setMembership(m);

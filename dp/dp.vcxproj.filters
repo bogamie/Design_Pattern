@@ -81,9 +81,6 @@
     <ClCompile Include="FeeStrategy.cpp">
       <Filter>Source Files\Strategy</Filter>
     </ClCompile>
-    <ClCompile Include="MembershipStrategy.cpp">
-      <Filter>Source Files\Strategy</Filter>
-    </ClCompile>
     <ClCompile Include="BookInventory.cpp">
       <Filter>Source Files\Singleton</Filter>
     </ClCompile>
@@ -114,6 +111,18 @@
     <ClCompile Include="sqlite3.c">
       <Filter>Source Files\Database</Filter>
     </ClCompile>
+    <ClCompile Include="FactoryRegistry.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="PremiumFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="RestrictedFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
@@ -129,9 +138,6 @@
       <Filter>Header Files\Observer</Filter>
     </ClInclude>
     <ClInclude Include="FeeStrategy.h">
-      <Filter>Header Files\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="MembershipStrategy.h">
       <Filter>Header Files\Strategy</Filter>
     </ClInclude>
     <ClInclude Include="BookInventory.h">
@@ -171,6 +177,12 @@
       <Filter>Header Files\Database</Filter>
     </ClInclude>
     <ClInclude Include="sqlite3ext.h">
+      <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryRegistry.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="UserDB.h">
       <Filter>Header Files\Database</Filter>
     </ClInclude>
   </ItemGroup>

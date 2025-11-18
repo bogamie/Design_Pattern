@@ -129,13 +129,16 @@
     <ClCompile Include="BookDB.cpp" />
     <ClCompile Include="BookInventory.cpp" />
     <ClCompile Include="CLI.cpp" />
+    <ClCompile Include="FactoryRegistry.cpp" />
+    <ClCompile Include="NormalFactory.cpp" />
+    <ClCompile Include="PremiumFactory.cpp" />
+    <ClCompile Include="RestrictedFactory.cpp" />
     <ClCompile Include="sqlite3.c" />
     <ClCompile Include="UserDB.cpp" />
     <ClCompile Include="DiscountDecorator.cpp" />
     <ClCompile Include="LibrarySystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="FeeStrategy.cpp" />
-    <ClCompile Include="MembershipStrategy.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="RentalManager.cpp" />
     <ClCompile Include="User.cpp" />
@@ -149,9 +152,9 @@
     <ClInclude Include="CLI.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="DiscountDecorator.h" />
+    <ClInclude Include="FactoryRegistry.h" />
     <ClInclude Include="FeeStrategy.h" />
     <ClInclude Include="LibrarySystem.h" />
-    <ClInclude Include="MembershipStrategy.h" />
     <ClInclude Include="NormalFactory.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="PremiumFactory.h" />
@@ -160,6 +163,7 @@
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="sqlite3ext.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserDB.h" />
     <ClInclude Include="WaitingListManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

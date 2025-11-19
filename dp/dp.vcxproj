@@ -129,6 +129,7 @@
     <ClCompile Include="BookDB.cpp" />
     <ClCompile Include="BookInventory.cpp" />
     <ClCompile Include="CLI.cpp" />
+    <ClCompile Include="Database.cpp" />
     <ClCompile Include="FactoryRegistry.cpp" />
     <ClCompile Include="NormalFactory.cpp" />
     <ClCompile Include="PremiumFactory.cpp" />

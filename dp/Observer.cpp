@@ -10,9 +10,24 @@ void NotificationSubject::notify(const string& message) {
     for (auto o : observers) o->update(message);
 }
 
+// EmailNotifier
 void EmailNotifier::update(const string& message) {
-    cout << "[Email 알림] " << message << endl;
+    messages_.push_back("[Email] " + message);
 }
+vector<string> EmailNotifier::getMessages() const {
+    return messages_;
+}
+void EmailNotifier::clearMessages() {
+    messages_.clear();
+}
+
+// SMSNotifier
 void SMSNotifier::update(const string& message) {
-    cout << "[SMS 알림] " << message << endl;
+    messages_.push_back("[SMS] " + message);
+}
+vector<string> SMSNotifier::getMessages() const {
+    return messages_;
+}
+void SMSNotifier::clearMessages() {
+    messages_.clear();
 }

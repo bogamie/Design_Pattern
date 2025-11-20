@@ -1,4 +1,5 @@
 #include "FeeStrategy.h"
+using namespace std;
 
 double BasicFee::calculateFee(int days, double discountRate) const {
     if (days < 0) days = 0;

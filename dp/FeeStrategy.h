@@ -1,4 +1,5 @@
 #pragma once
+using namespace std;
 
 // 책 요금 계산용 전략 (Strategy Pattern)
 class FeeStrategy {

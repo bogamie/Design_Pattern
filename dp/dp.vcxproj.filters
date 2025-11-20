@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{25dcd6c2-4730-4f07-b95b-2e65d37cce96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{7ad684ff-ac98-45dd-9f8c-2e59b1b50669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{559e5f06-9a7c-40d9-a3de-7c7a38aef027}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,9 +75,6 @@
     <ClCompile Include="FeeStrategy.cpp">
       <Filter>Source Files\Strategy</Filter>
     </ClCompile>
-    <ClCompile Include="MembershipStrategy.cpp">
-      <Filter>Source Files\Strategy</Filter>
-    </ClCompile>
     <ClCompile Include="BookInventory.cpp">
       <Filter>Source Files\Singleton</Filter>
     </ClCompile>
@@ -81,7 +84,37 @@
     <ClCompile Include="RentalManager.cpp">
       <Filter>Source Files\Singleton</Filter>
     </ClCompile>
+    <ClCompile Include="UserManager.cpp">
+      <Filter>Source Files\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="CLI.h">
+      <Filter>Header Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LibrarySystem.h">
+      <Filter>Header Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CLI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LibrarySystem.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
     <ClCompile Include="AbstractMembershipFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryRegistry.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryRegistry.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="PremiumFactory.cpp">
+      <Filter>Source Files\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="RestrictedFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,16 +125,10 @@
     <ClInclude Include="User.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="DiscountDecorator.h">
-      <Filter>Header Files\Decorator</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Header Files\Observer</Filter>
     </ClInclude>
     <ClInclude Include="FeeStrategy.h">
-      <Filter>Header Files\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="MembershipStrategy.h">
       <Filter>Header Files\Strategy</Filter>
     </ClInclude>
     <ClInclude Include="BookInventory.h">
@@ -124,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="RestrictedFactory.h">
       <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscountDecorator.h">
+      <Filter>Header Files\Decorator</Filter>
+    </ClInclude>
+    <ClInclude Include="UserManager.h">
+      <Filter>Header Files\Singleton</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

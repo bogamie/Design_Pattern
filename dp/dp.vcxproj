@@ -126,13 +126,22 @@
     <ClCompile Include="AbstractMembershipFactory.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookInventory.cpp" />
+    <ClCompile Include="CLI.cpp" />
+    <ClCompile Include="CLI.h" />
     <ClCompile Include="DiscountDecorator.cpp" />
+    <ClCompile Include="FactoryRegistry.cpp" />
+    <ClCompile Include="FactoryRegistry.h" />
+    <ClCompile Include="LibrarySystem.cpp" />
+    <ClCompile Include="LibrarySystem.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="FeeStrategy.cpp" />
-    <ClCompile Include="MembershipStrategy.cpp" />
+    <ClCompile Include="NormalFactory.cpp" />
     <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="PremiumFactory.cpp" />
     <ClCompile Include="RentalManager.cpp" />
+    <ClCompile Include="RestrictedFactory.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserManager.cpp" />
     <ClCompile Include="WaitingListManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,13 +150,13 @@
     <ClInclude Include="BookInventory.h" />
     <ClInclude Include="DiscountDecorator.h" />
     <ClInclude Include="FeeStrategy.h" />
-    <ClInclude Include="MembershipStrategy.h" />
     <ClInclude Include="NormalFactory.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="PremiumFactory.h" />
     <ClInclude Include="RentalManager.h" />
     <ClInclude Include="RestrictedFactory.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserManager.h" />
     <ClInclude Include="WaitingListManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

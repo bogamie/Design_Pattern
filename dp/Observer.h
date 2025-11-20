@@ -8,6 +8,8 @@ class Observer {
 public:
     virtual ~Observer() = default;
     virtual void update(const string& message) = 0;
+    virtual vector<string> getMessages() const = 0;
+    virtual void clearMessages() = 0;
 };
 
 class NotificationSubject {
@@ -19,11 +21,17 @@ public:
 };
 
 class EmailNotifier : public Observer {
+    vector<string> messages_;
 public:
     void update(const string& message) override;
+    vector<string> getMessages() const override;
+    void clearMessages() override;
 };
 
 class SMSNotifier : public Observer {
+    vector<string> messages_;
 public:
     void update(const string& message) override;
+    vector<string> getMessages() const override;
+    void clearMessages() override;
 };

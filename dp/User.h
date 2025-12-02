@@ -2,6 +2,8 @@
 #include <string>
 #include "AbstractMembershipFactory.h"
 
+using namespace std;
+
 class User {
 private:
     string id, pw, name;

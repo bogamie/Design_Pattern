@@ -49,11 +49,17 @@
     <Filter Include="Source Files\Factory">
       <UniqueIdentifier>{25dcd6c2-4730-4f07-b95b-2e65d37cce96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\UI">
-      <UniqueIdentifier>{7ad684ff-ac98-45dd-9f8c-2e59b1b50669}</UniqueIdentifier>
+    <Filter Include="Source Files\Library">
+      <UniqueIdentifier>{5a53e3da-0eab-42f2-a28d-3f19fb4979c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI">
-      <UniqueIdentifier>{559e5f06-9a7c-40d9-a3de-7c7a38aef027}</UniqueIdentifier>
+    <Filter Include="Header Files\Library">
+      <UniqueIdentifier>{9249cfed-03d5-4b7a-aa9b-72dd81d621fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Database">
+      <UniqueIdentifier>{55685199-6dee-424d-851d-43ce1e19da22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Database">
+      <UniqueIdentifier>{98901ae2-75e2-47a4-a8d7-48605745cc85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,26 +90,26 @@
     <ClCompile Include="RentalManager.cpp">
       <Filter>Source Files\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="UserManager.cpp">
-      <Filter>Source Files\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="CLI.h">
-      <Filter>Header Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="LibrarySystem.h">
-      <Filter>Header Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="CLI.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="LibrarySystem.cpp">
-      <Filter>Source Files\UI</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractMembershipFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="FactoryRegistry.h">
-      <Filter>Header Files\Factory</Filter>
+    <ClCompile Include="LibrarySystem.cpp">
+      <Filter>Source Files\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="CLI.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="UserDB.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="BookDB.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>Source Files\Database</Filter>
     </ClCompile>
     <ClCompile Include="FactoryRegistry.cpp">
       <Filter>Source Files\Factory</Filter>
@@ -117,6 +123,9 @@
     <ClCompile Include="RestrictedFactory.cpp">
       <Filter>Source Files\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Source Files\Database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
@@ -124,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="User.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscountDecorator.h">
+      <Filter>Header Files\Decorator</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Header Files\Observer</Filter>
@@ -152,11 +164,29 @@
     <ClInclude Include="RestrictedFactory.h">
       <Filter>Header Files\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="DiscountDecorator.h">
-      <Filter>Header Files\Decorator</Filter>
+    <ClInclude Include="LibrarySystem.h">
+      <Filter>Header Files\Library</Filter>
     </ClInclude>
-    <ClInclude Include="UserManager.h">
-      <Filter>Header Files\Singleton</Filter>
+    <ClInclude Include="CLI.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3ext.h">
+      <Filter>Header Files\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryRegistry.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="UserDB.h">
+      <Filter>Header Files\Database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

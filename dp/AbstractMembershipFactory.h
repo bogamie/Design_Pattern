@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include "FeeStrategy.h"
-using namespace std;
 
 class AbstractMembershipFactory {
 protected:
@@ -14,5 +13,5 @@ public:
     virtual double getMonthlyFee() const = 0;
     virtual double getDiscountRate() const = 0;
     virtual const FeeStrategy* getFeeStrategy() const = 0;
-    virtual string getGradeName() const = 0;
+    virtual std::string getGradeName() const = 0;
 };

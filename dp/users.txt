@@ -1,5 +1,0 @@
-{"id":"aaa","pw":"1234","name":"홍길동","grade":"Restricted"}
-{"id":"bbb","pw":"5678","name":"김철수","grade":"Premium"}
-{"id":"bogam","pw":"bogam","name":"bbb","grade":"Normal"}
-{"id":"ccc","pw":"9012","name":"이영희","grade":"Restricted"}
-{"id":"test","pw":"test","name":"testtest","grade":"Normal"}

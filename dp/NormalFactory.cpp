@@ -1,5 +1,4 @@
 #include "NormalFactory.h"
-using namespace std;
 
 double NormalFactory::getMonthlyFee() const {
     return 10000.0;
@@ -13,6 +12,6 @@ const FeeStrategy* NormalFactory::getFeeStrategy() const {
     return &BASIC_FEE;
 }
 
-string NormalFactory::getGradeName() const {
+std::string NormalFactory::getGradeName() const {
     return "Normal";
 }

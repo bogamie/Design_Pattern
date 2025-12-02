@@ -1,5 +1,4 @@
 #include "PremiumFactory.h"
-using namespace std;
 
 double PremiumFactory::getMonthlyFee() const {
     return 20000.0;
@@ -13,6 +12,6 @@ const FeeStrategy* PremiumFactory::getFeeStrategy() const {
     return &BASIC_FEE;
 }
 
-string PremiumFactory::getGradeName() const {
+std::string PremiumFactory::getGradeName() const {
     return "Premium";
 }

@@ -7,12 +7,14 @@ class Book {
     string title;
     string author;
     bool isRented;
+    int rentalDays;
 public:
     Book(int i, string t, string a);
     void rent();
     void giveBack();
     bool rented() const;
     string getTitle() const;
-    string getAuthor() const;
     int getId() const;
+    void setRentalDays(int days);
+    int getRentalDays() const;
 };

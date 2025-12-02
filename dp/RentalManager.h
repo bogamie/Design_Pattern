@@ -15,4 +15,5 @@ public:
     void rentBook(User* user, Book* book);
     void reserveBook(User* user, Book* book);
     void returnBook(User* user, Book* book);
+    double calculateRentalFee(User* user, Book* book);
 };

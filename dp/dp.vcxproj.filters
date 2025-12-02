@@ -102,9 +102,6 @@
     <ClCompile Include="Admin.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="UserDB.cpp">
-      <Filter>Source Files\Database</Filter>
-    </ClCompile>
     <ClCompile Include="BookDB.cpp">
       <Filter>Source Files\Database</Filter>
     </ClCompile>
@@ -184,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="FactoryRegistry.h">
       <Filter>Header Files\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="UserDB.h">
-      <Filter>Header Files\Database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

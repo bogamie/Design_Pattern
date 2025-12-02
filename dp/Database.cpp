@@ -1,6 +1,5 @@
 #include "Database.h"
 #include "BookDB.h"
-#include "UserDB.h"
 #include <iostream>
 
 Database::Database() : db(nullptr) {}
@@ -13,7 +12,6 @@ Database& Database::get() {
 bool Database::open(const std::string& file) {
     sqlite3_open(file.c_str(), &db);
     BookDB::get().initTable();
-    UserDB::get().initTable();
     return true;
 
     std::cerr << "DB Open Failed: " << sqlite3_errmsg(db) << "\n";

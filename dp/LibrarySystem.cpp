@@ -108,8 +108,6 @@ bool LibrarySystem::setUserMembership(const string& id, AbstractMembershipFactor
     return true;
 }
 
-RentalManager& LibrarySystem::rental() { return rentalManager_; }
-
 // Notification helpers
 vector<string> LibrarySystem::getEmailNotifications() const {
     return emailNotifier_.getMessages();

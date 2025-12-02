@@ -7,11 +7,11 @@
 using namespace std;
 
 class RentalManager {
-    NotificationSubject* notifier;
+    Subject* notifier;
     BookInventory* inventory;
     WaitingListManager* waitingMgr;
 public:
-    RentalManager(NotificationSubject* n);
+    RentalManager(Subject* n);
     void rentBook(User* user, Book* book);
     void reserveBook(User* user, Book* book);
     void returnBook(User* user, Book* book);

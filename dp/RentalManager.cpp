@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-RentalManager::RentalManager(NotificationSubject* n) : notifier(n) {
+RentalManager::RentalManager(Subject* n) : notifier(n) {
     inventory = &BookInventory::getInstance();
     waitingMgr = &WaitingListManager::getInstance();
 }

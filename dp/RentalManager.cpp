@@ -57,31 +57,3 @@ void RentalManager::returnBook(User* user, Book* book) {
 
     cout << "남은 재고: " << inventory->getStock(bookId) << endl;
 }
-
-double RentalManager::calculateRentalFee(User* user, Book* book) {
-    if (!book->rented()) {
-        cout << "This book is not rented." << endl;
-        return 0.0;
-    }
-
-    int days = book->getRentalDays();
-    double discountRate = user->getDiscountRate();
-    
-    // Strategy Pattern: Use fee calculation strategy from user's membership
-    const FeeStrategy* strategy = user->getFeeStrategy();
-    double baseFee = strategy->calculateFee(days, discountRate);
-    
-    // Decorator Pattern: Apply discounts
-    Discount* discount = new BasicDiscount();
-    discount = new MembershipDiscount(discount);
-    
-    if (user->getCoupon()) {
-        discount = new CouponDiscount(discount);
-    }
-    
-    double finalFee = discount->applyDiscount(baseFee);
-    
-    delete discount;
-    
-    return finalFee;
-}

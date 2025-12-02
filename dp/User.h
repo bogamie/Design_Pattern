@@ -4,32 +4,20 @@
 
 class User {
 private:
-    std::string id;
-    std::string pw;
-    std::string name;
+    string id, pw, name;
 
     const AbstractMembershipFactory* membership;
-    bool hasCoupon;
 
 public:
-    User(const std::string& id,
-        const std::string& pw,
-        const std::string& name,
-        const AbstractMembershipFactory* m);
-
-    const std::string& getId() const;
-    const std::string& getName() const;
-    const std::string& getPassword() const;
-
-    bool checkPassword(const std::string& pw) const;
-
-    std::string getGrade() const;
+    User(string id, string pw, string name, AbstractMembershipFactory* m);
+    ~User();
+    string getName() const;
+    string getId() const;
+    string getPw() const;
+    string getMembershipName() const; // 등급 명칭
     double getDiscountRate() const;
     const FeeStrategy* getFeeStrategy() const;
-    double getMonthlyFee() const;
-
-    void setMembership(const AbstractMembershipFactory* m);
-    
-    bool getCoupon() const;
-    void setCoupon(bool has);
+    // 기존 CLI 코드 호환용 편의 함수들
+    string getGrade() const;              // getMembershipName() 래핑
+    double calculateRentalFee(int days) const; // 전략 + 할인율 적용
 };

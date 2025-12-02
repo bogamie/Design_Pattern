@@ -41,6 +41,16 @@ public:
     // Rental interfaces
     RentalManager& rental();
 
+
+    // Notification helpers
+    vector<string> getEmailNotifications() const;
+    vector<string> getSMSNotifications() const;
+    void clearNotifications();
+
+    // Persistence
+    void loadUsersFromFile(const string& filename = "users.txt");
+    void saveUsersToFile(const string& filename = "users.txt");
+
 private:
     std::map<int, Book> books_;               // id -> Book
     std::map<std::string, std::unique_ptr<User>> users_; // id -> User

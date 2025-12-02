@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -8,30 +8,30 @@ class Observer {
 public:
     virtual ~Observer() = default;
     virtual void update(const string& message) = 0;
+    virtual vector<string> getMessages() const = 0;
+    virtual void clearMessages() = 0;
 };
 
-class Subject {
-public:
-    virtual ~Subject() = default;
-    virtual void attach(Observer* o) = 0;
-    virtual void detach(Observer* o) = 0;
-    virtual void notify(const string& message) = 0;
-};
+class NotificationSubject {
+        vector<Observer*> observers;
+    public:
+        void attach(Observer* o);
+        void detach(Observer* o);
+        void notify(const string& message);
+    };
 
-class NotificationSubject : public Subject {
-    vector<Observer*> observers;
-public:
-    void attach(Observer* o) override;
-    void detach(Observer* o) override;
-    void notify(const string& message) override;
-};
+    class EmailNotifier : public Observer {
+        vector<string> messages_;
+    public:
+        void update(const string& message) override;
+        vector<string> getMessages() const override;
+        void clearMessages() override;
+    };
 
-class EmailNotifier : public Observer {
-public:
-    void update(const string& message) override;
-};
-
-class SMSNotifier : public Observer {
-public:
-    void update(const string& message) override;
-};
+    class SMSNotifier : public Observer {
+        vector<string> messages_;
+    public:
+        void update(const string& message) override;
+        vector<string> getMessages() const override;
+        void clearMessages() override;
+    };

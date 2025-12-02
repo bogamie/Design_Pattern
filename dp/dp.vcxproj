@@ -124,7 +124,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractMembershipFactory.cpp" />
-    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookDB.cpp" />
     <ClCompile Include="BookInventory.cpp" />
@@ -146,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractMembershipFactory.h" />
-    <ClInclude Include="Admin.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookInventory.h" />
     <ClInclude Include="CLI.h" />

@@ -99,9 +99,6 @@
     <ClCompile Include="CLI.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Admin.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="BookDB.cpp">
       <Filter>Source Files\Database</Filter>
     </ClCompile>
@@ -165,9 +162,6 @@
       <Filter>Header Files\Library</Filter>
     </ClInclude>
     <ClInclude Include="CLI.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Admin.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Database.h">

@@ -17,3 +17,4 @@ const FeeStrategy* User::getFeeStrategy() const { return membership->getFeeStrat
 string User::getGrade() const { return getMembershipName(); }
 double User::calculateRentalFee(int days) const {
 	return getFeeStrategy()->calculateFee(days, getDiscountRate());
+}

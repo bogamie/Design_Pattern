@@ -1,17 +1,13 @@
 #pragma once
-#include <string>
-#include "FeeStrategy.h"
+#include <memory>
+#include "MembershipBenefit.h"
 
 class AbstractMembershipFactory {
-protected:
+public:
     static BasicFee BASIC_FEE;
     static LateFee  LATE_FEE;
 
-public:
     virtual ~AbstractMembershipFactory() = default;
 
-    virtual double getMonthlyFee() const = 0;
-    virtual double getDiscountRate() const = 0;
-    virtual const FeeStrategy* getFeeStrategy() const = 0;
-    virtual std::string getGradeName() const = 0;
+    virtual std::unique_ptr<MembershipBenefit> createMembershipBenefit() const = 0;
 };

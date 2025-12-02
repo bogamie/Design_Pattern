@@ -1,44 +1,27 @@
 #include "User.h"
+#include "AbstractMembershipFactory.h"
 
-User::User(const std::string& id,
-    const std::string& pw,
-    const std::string& name,
-    const AbstractMembershipFactory* m)
-    : id(id), pw(pw), name(name), membership(m), hasCoupon(false) {
+using namespace std;
+
+User::User(string id, string pw, string name, AbstractMembershipFactory* factory)
+    : id(id), pw(pw), name(name), membershipBenefit(factory->createMembershipBenefit()) {
 }
 
-const std::string& User::getId() const { return id; }
-const std::string& User::getName() const { return name; }
-const std::string& User::getPassword() const { return pw; }
-
-bool User::checkPassword(const std::string& p) const {
-    return pw == p;
+User::~User() { 
 }
 
-std::string User::getGrade() const {
-    return membership->getGradeName();
+string User::getName() const { return name; }
+string User::getId() const { return id; }
+string User::getPw() const { return pw; }
+string User::getMembershipName() const { return membershipBenefit->getGradeName(); }
+double User::getDiscountRate() const { return membershipBenefit->getDiscountRate(); }
+const FeeStrategy* User::getFeeStrategy() const { return membershipBenefit->getFeeStrategy(); }
+
+string User::getGrade() const { return getMembershipName(); }
+double User::calculateRentalFee(int days) const {
+	return getFeeStrategy()->calculateFee(days, getDiscountRate());
 }
 
-double User::getDiscountRate() const {
-    return membership->getDiscountRate();
-}
-
-const FeeStrategy* User::getFeeStrategy() const {
-    return membership->getFeeStrategy();
-}
-
-double User::getMonthlyFee() const {
-    return membership->getMonthlyFee();
-}
-
-void User::setMembership(const AbstractMembershipFactory* m) {
-    membership = m;
-}
-
-bool User::getCoupon() const {
-    return hasCoupon;
-}
-
-void User::setCoupon(bool has) {
-    hasCoupon = has;
+void User::setMembership(AbstractMembershipFactory* factory) {
+    membershipBenefit = factory->createMembershipBenefit();
 }

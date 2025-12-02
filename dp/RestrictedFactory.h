@@ -3,8 +3,5 @@
 
 class RestrictedFactory : public AbstractMembershipFactory {
 public:
-    double getMonthlyFee() const override;
-    double getDiscountRate() const override;
-    const FeeStrategy* getFeeStrategy() const override;
-    std::string getGradeName() const override;
+    std::unique_ptr<MembershipBenefit> createMembershipBenefit() const override;
 };

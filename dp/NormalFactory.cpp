@@ -1,17 +1,6 @@
 #include "NormalFactory.h"
+#include "MembershipBenefit.h"
 
-double NormalFactory::getMonthlyFee() const {
-    return 10000.0;
-}
-
-double NormalFactory::getDiscountRate() const {
-    return 0.03;
-}
-
-const FeeStrategy* NormalFactory::getFeeStrategy() const {
-    return &BASIC_FEE;
-}
-
-std::string NormalFactory::getGradeName() const {
-    return "Normal";
+std::unique_ptr<MembershipBenefit> NormalFactory::createMembershipBenefit() const {
+    return std::make_unique<NormalMembershipBenefit>();
 }

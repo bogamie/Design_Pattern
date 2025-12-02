@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "LibrarySystem.h"
 
 class CLI {
@@ -13,7 +14,10 @@ private:
     int promptInt(const std::string& label);
     std::string promptStr(const std::string& label);
     void pause();
-
+    void clearScreen();
+    void printHeader();
+    void printNotifications();
+    void printSeparator(const string& title = "");
     void roleMenu();
     void userMenu();
     void adminMenu();
@@ -22,8 +26,6 @@ private:
     void userRent();
     void userReserve();
     void userReturn();
-    void userCalculateFee();
-    void userManageCoupon();
 
     void adminListBooks();
     void adminAddBook();

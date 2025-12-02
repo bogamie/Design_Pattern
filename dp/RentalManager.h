@@ -7,7 +7,7 @@
 using namespace std;
 
 class RentalManager {
-    Subject* notifier;
+    Subject* notifier;  // Subject \uc778\ud130\ud398\uc774\uc2a4\ub85c \ubcc0\uacbd
     BookInventory* inventory;
     WaitingListManager* waitingMgr;
 public:

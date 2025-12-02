@@ -41,13 +41,25 @@ public:
     // Rental interfaces
     RentalManager& rental();
 
+    // Observer management
+    NotificationSubject& getNotifier();  // 구체 타입 반환 (외부에서 구체 Observer 생성용)
+    void registerObserver(Observer* observer);
+    void unregisterObserver(Observer* observer);
+
+    // Notification helpers
+    vector<string> getNotifications(Observer* observer) const;
+    void clearNotifications(Observer* observer);
+
+    // Persistence
+    void loadUsersFromFile(const string& filename = "users.txt");
+    void saveUsersToFile(const string& filename = "users.txt");
+
 private:
     std::map<int, Book> books_;               // id -> Book
     std::map<std::string, std::unique_ptr<User>> users_; // id -> User
 
     NotificationSubject notifier_;
-    EmailNotifier emailNotifier_;
-    SMSNotifier smsNotifier_;
+    std::vector<Observer*> managedObservers_; // 외부에서 등록된 옵저버 추적용
 
     RentalManager rentalManager_;
     BookInventory& inventory_;

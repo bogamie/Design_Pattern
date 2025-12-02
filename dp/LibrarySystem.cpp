@@ -1,12 +1,15 @@
 #include "LibrarySystem.h"
 #include "FactoryRegistry.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <algorithm>
 
 LibrarySystem::LibrarySystem()
     : rentalManager_(&notifier_), inventory_(BookInventory::getInstance()) {
-    // Attach notifiers
-    notifier_.attach(&emailNotifier_);
-    notifier_.attach(&smsNotifier_);
+    seed();
+    // 기존 사용자 로드
+    loadUsersFromFile();
 }
 
 void LibrarySystem::seed() {
@@ -21,7 +24,7 @@ void LibrarySystem::seed() {
 }
 
 bool LibrarySystem::addBook(int id, const std::string& title, const std::string& author, int quantity) {
-    if (books_.count(id)) return false;
+    if (!hasBook(id)) return false;
     books_.emplace(id, Book{ id, title, author });
     inventory_.initStock(id, quantity);
     return true;
@@ -42,14 +45,12 @@ bool LibrarySystem::setBookStock(int id, int quantity) {
 }
 
 bool LibrarySystem::addBookStock(int id, int delta) {
-    if (!books_.count(id)) return false;
-    int current = inventory_.getStock(id);
-    int next = std::max(0, current + delta);
-    inventory_.initStock(id, next);
+    if (!hasBook(id)) return false;
+    for (int i = 0; i < delta; ++i) inventory_.increaseStock(id);
     return true;
 }
 
-bool LibrarySystem::hasBook(int id) const { return books_.count(id) > 0; }
+bool LibrarySystem::hasBook(int id) const { return books_.count(id) != 0; }
 
 Book* LibrarySystem::getBook(int id) {
     auto it = books_.find(id);
@@ -90,14 +91,96 @@ std::vector<User*> LibrarySystem::listUsers() {
 User* LibrarySystem::authenticate(const std::string& id, const std::string& pw) {
     User* u = getUser(id);
     if (!u) return nullptr;
-    return u->checkPassword(pw) ? u : nullptr;
+    return (u->getPw() == pw) ? u : nullptr;
 }
 
-bool LibrarySystem::setUserMembership(const std::string& id, AbstractMembershipFactory* m) {
-    User* u = getUser(id);
-    if (!u) { delete m; return false; }
-    u->setMembership(m);
+bool LibrarySystem::setUserMembership(const string& id, AbstractMembershipFactory* m) {
+    auto it = users_.find(id);
+    if (it == users_.end()) return false;
+    it->second->setMembership(m);
+    saveUsersToFile();
     return true;
+}
+
+// Observer management
+NotificationSubject& LibrarySystem::getNotifier() {
+    return notifier_;
+}
+
+void LibrarySystem::registerObserver(Observer* observer) {
+    if (observer) {
+        managedObservers_.push_back(observer);
+    }
+}
+
+void LibrarySystem::unregisterObserver(Observer* observer) {
+    if (observer) {
+        managedObservers_.erase(
+            std::remove(managedObservers_.begin(), managedObservers_.end(), observer),
+            managedObservers_.end()
+        );
+    }
+}
+
+// Notification helpers
+vector<string> LibrarySystem::getNotifications(Observer* observer) const {
+    if (observer) {
+        return observer->getMessages();
+    }
+    return {};
+}
+
+void LibrarySystem::clearNotifications(Observer* observer) {
+    if (observer) {
+        observer->clearMessages();
+    }
+}
+
+// --- Persistence helpers ---
+static AbstractMembershipFactory* createFactoryByGrade(const string& grade) {
+    if (grade == "Normal") return new NormalFactory();
+    if (grade == "Premium") return new PremiumFactory();
+    if (grade == "Restricted") return new RestrictedFactory();
+    return new NormalFactory();
+}
+
+void LibrarySystem::saveUsersToFile(const string& filename) {
+    ofstream out(filename);
+    if (!out.is_open()) return;
+    for (auto& kv : users_) {
+        User* u = kv.second.get();
+        out << "{"
+            << "\"id\":\"" << u->getId() << "\","
+            << "\"pw\":\"" << u->getPw() << "\","
+            << "\"name\":\"" << u->getName() << "\","
+            << "\"grade\":\"" << u->getMembershipName() << "\""
+            << "}\n";
+    }
+    out.close();
+}
+
+void LibrarySystem::loadUsersFromFile(const string& filename) {
+    ifstream in(filename);
+    if (!in.is_open()) return;
+    string line;
+    while (getline(in, line)) {
+        if (line.empty()) continue;
+        auto parse = [&](const string& key) {
+            size_t start = line.find("\"" + key + "\":\"") + key.length() + 4;
+            size_t end = line.find("\"", start);
+            if (start == string::npos || end == string::npos || end < start) return string("");
+            return line.substr(start, end - start);
+            };
+        string id = parse("id");
+        string pw = parse("pw");
+        string name = parse("name");
+        string grade = parse("grade");
+        if (id.empty()) continue;
+        if (users_.count(id)) continue;
+        AbstractMembershipFactory* f = createFactoryByGrade(grade);
+        users_[id] = unique_ptr<User>(new User(id, pw, name, f));
+    }
+    in.close();
 }
 
 RentalManager& LibrarySystem::rental() { return rentalManager_; }

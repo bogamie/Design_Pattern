@@ -1,3 +1,4 @@
 {"id":1,"title":"onepiece","author":"oda","stock":2}
 {"id":2,"title":"naruto","author":"kishimoto","stock":0}
 {"id":3,"title":"test","author":"test","stock":5}
+{"id":4,"title":"new book","author":"new author","stock":2}

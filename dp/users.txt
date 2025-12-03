@@ -1,0 +1,4 @@
+{"id":"aaa","pw":"1234","name":"junpyo","grade":"Premium"}
+{"id":"bbb","pw":"5678","name":"eonho","grade":"Normal"}
+{"id":"ccc","pw":"9012","name":"hihi","grade":"Normal"}
+{"id":"test","pw":"test","name":"test","grade":"Normal"}

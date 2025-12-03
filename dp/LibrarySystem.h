@@ -9,22 +9,19 @@
 #include "Observer.h"
 #include "BookInventory.h"
 
-// Simple in-memory library system to manage books and users for the CLI
 class LibrarySystem {
 public:
     LibrarySystem();
 
-    // Seed demo data
     void seed();
 
-    // Book management
     bool addBook(int id, const std::string& title, const std::string& author, int quantity);
     bool removeBook(int id);
     bool setBookStock(int id, int quantity);
     bool addBookStock(int id, int delta);
     bool hasBook(int id) const;
     Book* getBook(int id);
-    std::vector<Book> listBooks() const; // returns a snapshot copy
+    std::vector<Book> listBooks() const;
     int getStock(int id) const;
 
     // User management
@@ -42,7 +39,7 @@ public:
     RentalManager& rental();
 
     // Observer management
-    NotificationSubject& getNotifier();  // 구체 타입 반환 (외부에서 구체 Observer 생성용)
+    NotificationSubject& getNotifier();
     void registerObserver(Observer* observer);
     void unregisterObserver(Observer* observer);
 

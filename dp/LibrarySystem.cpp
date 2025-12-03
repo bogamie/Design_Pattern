@@ -7,24 +7,21 @@
 
 LibrarySystem::LibrarySystem()
     : rentalManager_(&notifier_), inventory_(BookInventory::getInstance()) {
-    seed();
-    // 기존 사용자 로드
     loadUsersFromFile();
+    seed();
 }
 
 void LibrarySystem::seed() {
-    // seed books
     addBook(1, "onepiece", "oda", 2);
     addBook(2, "naruto", "kishimoto", 0);
 
-    // seed users
     addUser("aaa", "1234", "junpyo", &PREMIUM_FACTORY);
     addUser("bbb", "5678", "eonho", &NORMAL_FACTORY);
     addUser("ccc", "9012", "hihi", &NORMAL_FACTORY);
 }
 
 bool LibrarySystem::addBook(int id, const std::string& title, const std::string& author, int quantity) {
-    if (!hasBook(id)) return false;
+    if (hasBook(id)) return false;
     books_.emplace(id, Book{ id, title, author });
     inventory_.initStock(id, quantity);
     return true;
@@ -33,7 +30,6 @@ bool LibrarySystem::addBook(int id, const std::string& title, const std::string&
 bool LibrarySystem::removeBook(int id) {
     if (!books_.count(id)) return false;
     books_.erase(id);
-    // Optional: zero out stock
     inventory_.initStock(id, 0);
     return true;
 }
@@ -72,6 +68,7 @@ int LibrarySystem::getStock(int id) const {
 bool LibrarySystem::addUser(const std::string& id, const std::string& pw, const std::string& name, AbstractMembershipFactory* m) {
     if (users_.count(id)) return false;
     users_[id] = std::unique_ptr<User>(new User(id, pw, name, m));
+    saveUsersToFile();
     return true;
 }
 
@@ -102,7 +99,6 @@ bool LibrarySystem::setUserMembership(const string& id, AbstractMembershipFactor
     return true;
 }
 
-// Observer management
 NotificationSubject& LibrarySystem::getNotifier() {
     return notifier_;
 }
@@ -122,7 +118,6 @@ void LibrarySystem::unregisterObserver(Observer* observer) {
     }
 }
 
-// Notification helpers
 vector<string> LibrarySystem::getNotifications(Observer* observer) const {
     if (observer) {
         return observer->getMessages();
@@ -136,7 +131,6 @@ void LibrarySystem::clearNotifications(Observer* observer) {
     }
 }
 
-// --- Persistence helpers ---
 static AbstractMembershipFactory* createFactoryByGrade(const string& grade) {
     if (grade == "Normal") return new NormalFactory();
     if (grade == "Premium") return new PremiumFactory();

@@ -19,6 +19,10 @@ string Book::getTitle() const {
     return title;
 }
 
+string Book::getAuthor() const {
+    return author;
+}
+
 int Book::getId() const {
     return id;
 }

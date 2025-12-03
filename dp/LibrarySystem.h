@@ -24,39 +24,34 @@ public:
     std::vector<Book> listBooks() const;
     int getStock(int id) const;
 
-    // User management
     bool addUser(const std::string& id, const std::string& pw, const std::string& name, AbstractMembershipFactory* m);
     User* getUser(const std::string& id);
     std::vector<User*> listUsers();
 
-    // Authentication
     User* authenticate(const std::string& id, const std::string& pw);
 
-    // Membership
     bool setUserMembership(const std::string& id, AbstractMembershipFactory* m);
 
-    // Rental interfaces
     RentalManager& rental();
 
-    // Observer management
     NotificationSubject& getNotifier();
     void registerObserver(Observer* observer);
     void unregisterObserver(Observer* observer);
 
-    // Notification helpers
     vector<string> getNotifications(Observer* observer) const;
     void clearNotifications(Observer* observer);
 
-    // Persistence
     void loadUsersFromFile(const string& filename = "users.txt");
     void saveUsersToFile(const string& filename = "users.txt");
+    void loadBooksFromFile(const string& filename = "books.txt");
+    void saveBooksToFile(const string& filename = "books.txt");
 
 private:
-    std::map<int, Book> books_;               // id -> Book
-    std::map<std::string, std::unique_ptr<User>> users_; // id -> User
+    std::map<int, Book> books_;
+    std::map<std::string, std::unique_ptr<User>> users_;
 
     NotificationSubject notifier_;
-    std::vector<Observer*> managedObservers_; // 외부에서 등록된 옵저버 추적용
+    std::vector<Observer*> managedObservers_;
 
     RentalManager rentalManager_;
     BookInventory& inventory_;

@@ -2,7 +2,6 @@
 #include <iostream>
 using namespace std;
 
-// NotificationSubject (Concrete Subject)
 void NotificationSubject::attach(Observer* o) { 
     observers_.push_back(o); 
 }
@@ -15,7 +14,6 @@ void NotificationSubject::notify(const string& message) {
     for (auto o : observers_) o->update(message);
 }
 
-// EmailNotifier (Concrete Observer)
 EmailNotifier::EmailNotifier(NotificationSubject* subject) : subject_(subject) {
     if (subject_) subject_->attach(this);
 }
@@ -36,7 +34,6 @@ void EmailNotifier::clearMessages() {
     messages_.clear();
 }
 
-// SMSNotifier (Concrete Observer)
 SMSNotifier::SMSNotifier(NotificationSubject* subject) : subject_(subject) {
     if (subject_) subject_->attach(this);
 }

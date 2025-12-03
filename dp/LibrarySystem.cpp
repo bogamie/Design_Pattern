@@ -8,6 +8,7 @@
 LibrarySystem::LibrarySystem()
     : rentalManager_(&notifier_), inventory_(BookInventory::getInstance()) {
     loadUsersFromFile();
+    loadBooksFromFile();
     seed();
 }
 
@@ -24,6 +25,7 @@ bool LibrarySystem::addBook(int id, const std::string& title, const std::string&
     if (hasBook(id)) return false;
     books_.emplace(id, Book{ id, title, author });
     inventory_.initStock(id, quantity);
+    saveBooksToFile();
     return true;
 }
 
@@ -31,12 +33,14 @@ bool LibrarySystem::removeBook(int id) {
     if (!books_.count(id)) return false;
     books_.erase(id);
     inventory_.initStock(id, 0);
+    saveBooksToFile();
     return true;
 }
 
 bool LibrarySystem::setBookStock(int id, int quantity) {
     if (!books_.count(id)) return false;
     inventory_.initStock(id, quantity);
+    saveBooksToFile();
     return true;
 }
 
@@ -173,6 +177,59 @@ void LibrarySystem::loadUsersFromFile(const string& filename) {
         if (users_.count(id)) continue;
         AbstractMembershipFactory* f = createFactoryByGrade(grade);
         users_[id] = unique_ptr<User>(new User(id, pw, name, f));
+    }
+    in.close();
+}
+
+void LibrarySystem::saveBooksToFile(const string& filename) {
+    ofstream out(filename);
+    if (!out.is_open()) return;
+    for (auto& kv : books_) {
+        Book& b = kv.second;
+        int stock = getStock(b.getId());
+        out << "{"
+            << "\"id\":" << b.getId() << ","
+            << "\"title\":\"" << b.getTitle() << "\","
+            << "\"author\":\"" << b.getAuthor() << "\","
+            << "\"stock\":" << stock
+            << "}\n";
+    }
+    out.close();
+}
+
+void LibrarySystem::loadBooksFromFile(const string& filename) {
+    ifstream in(filename);
+    if (!in.is_open()) return;
+    string line;
+    while (getline(in, line)) {
+        if (line.empty()) continue;
+        
+        auto parseStr = [&](const string& key) {
+            size_t start = line.find("\"" + key + "\":\"") + key.length() + 4;
+            size_t end = line.find("\"", start);
+            if (start == string::npos || end == string::npos || end < start) return string("");
+            return line.substr(start, end - start);
+        };
+        
+        auto parseInt = [&](const string& key) {
+            size_t start = line.find("\"" + key + "\":") + key.length() + 3;
+            size_t end = line.find_first_of(",}", start);
+            if (start == string::npos || end == string::npos || end < start) return 0;
+            string numStr = line.substr(start, end - start);
+            return std::stoi(numStr);
+        };
+        
+        int id = parseInt("id");
+        string title = parseStr("title");
+        string author = parseStr("author");
+        int stock = parseInt("stock");
+        
+        if (id > 0 && !title.empty()) {
+            if (!hasBook(id)) {
+                books_.emplace(id, Book{ id, title, author });
+                inventory_.initStock(id, stock);
+            }
+        }
     }
     in.close();
 }

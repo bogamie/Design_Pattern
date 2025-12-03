@@ -14,6 +14,7 @@ public:
     void giveBack();
     bool rented() const;
     string getTitle() const;
+    string getAuthor() const;
     int getId() const;
     void setRentalDays(int days);
     int getRentalDays() const;

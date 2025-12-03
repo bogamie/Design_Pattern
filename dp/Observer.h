@@ -30,7 +30,7 @@ public:
 
 class EmailNotifier : public Observer {
     vector<string> messages_;
-    NotificationSubject* subject_;  // 구체 클래스끼리 의존!
+    NotificationSubject* subject_;
 public:
     EmailNotifier(NotificationSubject* subject);
     ~EmailNotifier();
@@ -41,7 +41,7 @@ public:
 
 class SMSNotifier : public Observer {
     vector<string> messages_;
-    NotificationSubject* subject_;  // 구체 클래스끼리 의존!
+    NotificationSubject* subject_;
 public:
     SMSNotifier(NotificationSubject* subject);
     ~SMSNotifier();

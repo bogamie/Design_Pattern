@@ -37,9 +37,9 @@ void CLI::pause() {
 
 void CLI::clearScreen() {
 #ifdef _WIN32
-    //system("cls");
+
 #else
-    //cout << "\x1B[2J\x1B[H";
+
 #endif
 }
 
@@ -63,7 +63,6 @@ void CLI::roleMenu() {
 }
 
 void CLI::userMenu() {
-    // login or register
     clearScreen();
     cout << "\n-- 사용자 로그인/회원가입 --" << endl;
     string id = promptStr("아이디: ");
@@ -108,7 +107,6 @@ void CLI::userMenu() {
 }
 
 void CLI::adminMenu() {
-    // simple admin password
     clearScreen();
     cout << "\n-- 관리자 로그인 --" << endl;
     string pw = promptStr("관리자 비밀번호(admin): ");
